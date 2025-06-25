@@ -247,5 +247,14 @@ if sinal_atual != ultimo_sinal and ultimo_sinal != '':
     st.rerun()
 st.session_state['ultimo_sinal'] = sinal_atual
 
-# Seu código de visualização continua normalmente aqui
-st.write("Última atualização detectada:", sinal_atual)
+if sinal_atual:
+    try:
+        # Se sinal_atual for um número
+        timestamp = float(sinal_atual)
+        data_formatada = datetime.fromtimestamp(timestamp).strftime('%d/%m/%Y %H:%M')
+        st.write("Última atualização detectada:", data_formatada)
+    except:
+        # Caso não seja um timestamp numérico
+        st.write("Última atualização detectada:", sinal_atual)
+else:
+    st.write("Última atualização detectada:", sinal_atual)
