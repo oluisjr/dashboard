@@ -5,11 +5,14 @@ import matplotlib.pyplot as plt
 from matplotlib.dates import AutoDateLocator, MonthLocator
 from streamlit_autorefresh import st_autorefresh
 from datetime import datetime
+from zoneinfo import ZoneInfo
 import seaborn as sns
 import time
 import os
 
 st_autorefresh(interval=100000, key="refresh")
+
+data_hora_brasilia = datetime.now(ZoneInfo('America/Sao_Paulo'))
 
 # Caminho para o Excel - Supabase
 caminho_excel = 'https://wefwxrpcpwcfbbdqgpan.supabase.co/storage/v1/object/sign/excel-dados/planilhas/dados_resumidos.xlsx?token=eyJraWQiOiJzdG9yYWdlLXVybC1zaWduaW5nLWtleV9mNmMyYmMxNS1mMDQ4LTQyYjktYTg1ZS0xNWMyYzVlN2VlYmMiLCJhbGciOiJIUzI1NiJ9.eyJ1cmwiOiJleGNlbC1kYWRvcy9wbGFuaWxoYXMvZGFkb3NfcmVzdW1pZG9zLnhsc3giLCJpYXQiOjE3NTA4Njg2ODAsImV4cCI6MzMyNzY2ODY4MH0.Cj7qh0S1uAF9_UoH8ZyJnGBT2yZMPignsqbdkatO90I'
@@ -262,4 +265,4 @@ if sinal_atual:
 else:
     st.write("Última atualização detectada no arquivo excel:", sinal_atual)
 
-st.write(f"**Última atualização do site:** {datetime.now().strftime('%d/%m/%Y %H:%M:%S')} - **Versão:** 1.0.0")
+st.write(f"**Última atualização do site:** {data_hora_brasilia.strftime('%d/%m/%Y %H:%M:%S')} - **Versão:** 1.0.0")
