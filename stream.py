@@ -261,4 +261,4 @@ if sinal_atual:
 else:
     st.write("Última atualização detectada no arquivo excel:", sinal_atual)
 
-st.write(f"**Última atualização do site:** {datetime.now().srtftime('%d/%m/%Y %H:%M:%S')} - **Versão:** 1.0.0")
+st.write(f"**Última atualização do site:** {datetime.now().strftime('%d/%m/%Y %H:%M:%S')} - **Versão:** 1.0.0")
