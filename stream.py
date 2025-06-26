@@ -55,7 +55,7 @@ st.title("Dashboard de Sensores")
 # Configurações gerais
 def plot_linha_com_media_movel(dados, eixo_x, eixo_y, titulo, cor, tamanho=(8, 4)):
     fig, ax = plt.subplots(figsize=tamanho)
-    ax.plot(dados[eixo_x], dados[eixo_y], marker='o', color=cor, linewidth=1.5, label='Média')
+    ax.plot(dados[eixo_x], dados[eixo_y], marker='.', color=cor, linewidth=1.5, label='Média')
     dados['TENDENCIA'] = dados[eixo_y].rolling(window=400, min_periods=1).mean()
     ax.plot(dados[eixo_x], dados['TENDENCIA'], "r--", label='Tendência (Média Móvel)')
     ax.set_title(titulo)
