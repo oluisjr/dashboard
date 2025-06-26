@@ -14,7 +14,7 @@ caminho_excel = 'https://wefwxrpcpwcfbbdqgpan.supabase.co/storage/v1/object/sign
 LOGO_PATH = 'LogoCSN_Azul.png'
 FAVICON_PATH = 'favicon.png'
 
-# Carregar dados
+# Carregar aba de dados
 df_semanal = pd.read_excel(caminho_excel, sheet_name='Médias Semanais')
 df_mensal = pd.read_excel(caminho_excel, sheet_name='Médias Mensais')
 df_anual = pd.read_excel(caminho_excel, sheet_name='Médias Anuais')
@@ -43,11 +43,11 @@ nomes = {
 }
 
 # Configuração da página
-st.set_page_config(page_title="Sensores - Visualização Total", layout="wide", page_icon=FAVICON_PATH)
+st.set_page_config(page_title="Solda | Visualização", layout="wide", page_icon=FAVICON_PATH)
 st.image(LOGO_PATH, width=200)
 st.title("Dashboard de Sensores")
-st.subheader("Médias Semanais e Mensais com Tendência Realista")
 
+# Configurações gerais
 def plot_linha_com_media_movel(dados, eixo_x, eixo_y, titulo, cor, tamanho=(8, 4)):
     fig, ax = plt.subplots(figsize=tamanho)
     ax.plot(dados[eixo_x], dados[eixo_y], marker='o', color=cor, linewidth=1.5, label='Média')
@@ -109,14 +109,14 @@ def analisar_tendencia(dados, eixo_y):
     else:
         return f"➖ Dados estáveis: variação de {variacao:.2f}% no período."
 
-# Leitura do sinalizador
+
 def ler_sinal():
     if os.path.exists('atualizacao_sinal.txt'):
         with open('atualizacao_sinal.txt', 'r') as f:
             return f.read().strip()
     return ""
 
-# Filtros
+# Config. dos filtros
 st.sidebar.header("Filtros de Datas")
 
 st.sidebar.subheader("Período Semanal")
@@ -127,7 +127,7 @@ st.sidebar.subheader("Período Mensal")
 data_inicio_mes = st.sidebar.date_input("Data Inicial (Mensal)", value=pd.to_datetime(df_mensal['MES'].min()))
 data_fim_mes = st.sidebar.date_input("Data Final (Mensal)", value=pd.to_datetime(df_mensal['MES'].max()))
 
-# Aplicar filtros
+# Aplicação dos filtros
 df_semanal_filtrado = df_semanal[(df_semanal['SEMANA'] >= pd.to_datetime(data_inicio_semana)) & (df_semanal['SEMANA'] <= pd.to_datetime(data_fim_semana))]
 df_mensal_filtrado = df_mensal[(df_mensal['MES'] >= pd.to_datetime(data_inicio_mes)) & (df_mensal['MES'] <= pd.to_datetime(data_fim_mes))]
 
@@ -179,6 +179,7 @@ with col6:
 st.markdown("---")
 st.subheader("Gráficos Mensais (Linha e Mapa de Calor)")
 
+# Layout dos gráficos mensais
 for sensor in ['VELOCIDADE', 'CORRENTE', 'PRESSAO_SOLDA', 'PRESSAO_MARTELADOR']:
     col_linha, col_barra = st.columns(2)
     with col_linha:
@@ -221,6 +222,7 @@ with col_temp_mapa:
 st.markdown("---")
 st.subheader("Análise Anual por Sensor")
 
+# Layout dos gráficos anuais
 for sensor in ['VELOCIDADE', 'CORRENTE', 'PRESSAO_SOLDA', 'PRESSAO_MARTELADOR', 'TEMPERATURA']:
     fig = plot_grafico_anual(df_mensal_filtrado.copy(), sensor)
 
@@ -238,7 +240,6 @@ for idx, sensor in enumerate(['VELOCIDADE', 'CORRENTE', 'PRESSAO_SOLDA', 'PRESSA
 st.markdown("---")
 st.caption("Desenvolvido por Luis Ignacio - 2025")
 
-
 ultimo_sinal = st.session_state.get('ultimo_sinal', '')
 # Lê sinal atual
 sinal_atual = ler_sinal()
@@ -252,9 +253,11 @@ if sinal_atual:
         # Se sinal_atual for um número
         timestamp = float(sinal_atual)
         data_formatada = datetime.fromtimestamp(timestamp).strftime('%d/%m/%Y %H:%M')
-        st.write("Última atualização detectada:", data_formatada)
+        st.write("Última atualização detectada no arquivo excel:", data_formatada)
     except:
         # Caso não seja um timestamp numérico
-        st.write("Última atualização detectada:", sinal_atual)
+        st.write("Última atualização detectada no arquivo excel:", sinal_atual)
 else:
-    st.write("Última atualização detectada:", sinal_atual)
+    st.write("Última atualização detectada no arquivo excel:", sinal_atual)
+
+st.write(f"**Última atualização do site:** {datetime.now().srtftime('%d/%m/%Y %H:%M:%S')} - **Versão:** 1.0.0")
