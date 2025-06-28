@@ -50,7 +50,7 @@ nomes = {
 # Configuração da página
 st.set_page_config(page_title="Solda | Visualização", layout="wide", page_icon=FAVICON_PATH)
 st.image(LOGO_PATH, width=200)
-st.title("Dashboard de Sensores")
+st.title("Dashboard de Sensores da Máquina de Solda")
 
 # Configurações gerais
 def plot_linha_com_media_movel(dados, eixo_x, eixo_y, titulo, cor, tamanho=(8, 4)):
