@@ -4,3 +4,5 @@ matplotlib
 seaborn
 streamlit-autorefresh
 openpyxl
+pyecharts
+streamlit-echarts
