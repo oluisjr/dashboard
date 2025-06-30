@@ -217,7 +217,7 @@ with aba_ano:
 
 with aba_pizza:
     st.subheader("Falhas por Componente")
-    arquivo = st.file_uploader("Selecione o arquivo de falhas (Lisa de paradas do Cognos)", type=["xlsx", "xls"], label_visibility="collapsed")
+    arquivo = st.file_uploader("Selecione o arquivo de falhas (Lista de paradas do Cognos)", type=["xlsx", "xls"], label_visibility="collapsed")
 
     if arquivo:
         try:
