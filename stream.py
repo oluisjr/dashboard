@@ -15,7 +15,7 @@ st_autorefresh(interval=100000, key="refresh")
 data_hora_brasilia = datetime.now(ZoneInfo('America/Sao_Paulo'))
 
 # Caminho para o Excel - Supabase
-caminho_excel = 'https://wefwxrpcpwcfbbdqgpan.supabase.co/storage/v1/object/sign/excel-dados/planilhas/dados_resumidos.xlsx?token=eyJraWQiOiJzdG9yYWdlLXVybC1zaWduaW5nLWtleV9mNmMyYmMxNS1mMDQ4LTQyYjktYTg1ZS0xNWMyYzVlN2VlYmMiLCJhbGciOiJIUzI1NiJ9.eyJ1cmwiOiJleGNlbC1kYWRvcy9wbGFuaWxoYXMvZGFkb3NfcmVzdW1pZG9zLnhsc3giLCJpYXQiOjE3NTA4Njg2ODAsImV4cCI6MzMyNzY2ODY4MH0.Cj7qh0S1uAF9_UoH8ZyJnGBT2yZMPignsqbdkatO90I'
+caminho_excel = 'https://zkzgsynxomretgrzvokk.supabase.co/storage/v1/object/sign/excel-arquivo/dados_resumidos_gerado.xlsx?token=eyJraWQiOiJzdG9yYWdlLXVybC1zaWduaW5nLWtleV9hZGU3OGY1My02MTY0LTQwMTctODZiNC04YmZiOTdiOWZmODEiLCJhbGciOiJIUzI1NiJ9.eyJ1cmwiOiJleGNlbC1hcnF1aXZvL2RhZG9zX3Jlc3VtaWRvc19nZXJhZG8ueGxzeCIsImlhdCI6MTc1MTI5NTUyMywiZXhwIjoxNzgyODMxNTIzfQ.hqSF4rmaJ8W-CWWRGhnq6aY6qV27Ruaw5e1_bqONQF8'
 LOGO_PATH = 'LogoCSN_Azul.png'
 FAVICON_PATH = 'favicon.png'
 
