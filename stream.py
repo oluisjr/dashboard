@@ -26,8 +26,6 @@ st.set_page_config(
 st.image(LOGO_PATH, width=200)
 st.title("Dashboard de Sensores")
 
-st_autorefresh(interval=1000000, key="refresh")
-
 data_hora_brasilia = datetime.now(ZoneInfo('America/Sao_Paulo'))
 
 @st.cache_data
@@ -219,7 +217,7 @@ with aba_ano:
 
 with aba_pizza:
     st.subheader("Falhas por Componente")
-    arquivo = st.file_uploader("Selecione o arquivo de falhas", type=["xlsx", "xls"], label_visibility="collapsed")
+    arquivo = st.file_uploader("Selecione o arquivo de falhas (Lisa de paradas do Cognos)", type=["xlsx", "xls"], label_visibility="collapsed")
 
     if arquivo:
         try:
