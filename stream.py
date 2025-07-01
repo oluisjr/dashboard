@@ -13,8 +13,8 @@ from pyecharts.charts import Pie
 from pyecharts import options as opts
 from streamlit_echarts import st_pyecharts
 
-LOGO_PATH = 'LogoCSN_Azul.png'
-FAVICON_PATH = 'favicon.png'
+LOGO_PATH = r'C:\Users\csp4992\PMI\LogoCSN_Cinza.png'
+FAVICON_PATH = r'C:\Users\csp4992\PMI\favicon.png'
 caminho_excel = 'https://zkzgsynxomretgrzvokk.supabase.co/storage/v1/object/sign/excel-arquivo/dados_resumidos_gerado.xlsx?token=eyJraWQiOiJzdG9yYWdlLXVybC1zaWduaW5nLWtleV9hZGU3OGY1My02MTY0LTQwMTctODZiNC04YmZiOTdiOWZmODEiLCJhbGciOiJIUzI1NiJ9.eyJ1cmwiOiJleGNlbC1hcnF1aXZvL2RhZG9zX3Jlc3VtaWRvc19nZXJhZG8ueGxzeCIsImlhdCI6MTc1MTI5NTUyMywiZXhwIjoxNzgyODMxNTIzfQ.hqSF4rmaJ8W-CWWRGhnq6aY6qV27Ruaw5e1_bqONQF8'
 
 st.set_page_config(
@@ -196,10 +196,31 @@ aba_semana, aba_mes, aba_ano, aba_pizza = st.tabs(["Semana", "Mês", "Ano", "Fal
 
 with aba_semana:
     st.subheader("Gráficos Semanais")
-    for sensor in cores.keys():
-        st.write(f"## {nomes[sensor]}")
-        st.line_chart(df_semanal_filtrado.set_index('SEMANA_NUM')[sensor])
-        st.caption(analisar_tendencia(df_semanal_filtrado, sensor))
+    
+    sensores = list(cores.keys())
+    
+    # Cria as duas colunas para os quatro primeiros gráficos
+    col1, col2 = st.columns(2)
+
+    # Exibe os dois primeiros gráficos na primeira coluna
+    with col1:
+        for sensor in sensores[:2]:
+            st.write(f"## {nomes[sensor]}")
+            st.line_chart(df_semanal_filtrado.set_index('SEMANA_NUM')[sensor])
+            st.caption(analisar_tendencia(df_semanal_filtrado, sensor))
+
+    # Exibe os dois gráficos seguintes na segunda coluna
+    with col2:
+        for sensor in sensores[2:4]:
+            st.write(f"## {nomes[sensor]}")
+            st.line_chart(df_semanal_filtrado.set_index('SEMANA_NUM')[sensor])
+            st.caption(analisar_tendencia(df_semanal_filtrado, sensor))
+
+    # Exibe o último gráfico ocupando toda a largura
+    st.write(f"## {nomes[sensores[4]]}")
+    st.line_chart(df_semanal_filtrado.set_index('SEMANA_NUM')[sensores[4]])
+    st.caption(analisar_tendencia(df_semanal_filtrado, sensores[4]))
+
 
 with aba_mes:
     st.subheader("Gráficos Mensais")
@@ -217,7 +238,7 @@ with aba_ano:
 
 with aba_pizza:
     st.subheader("Falhas por Componente")
-    arquivo = st.file_uploader("Selecione o arquivo de falhas (Lista de paradas do Cognos)", type=["xlsx", "xls"], label_visibility="collapsed")
+    arquivo = "https://zkzgsynxomretgrzvokk.supabase.co/storage/v1/object/sign/excel-arquivo/Copiar%20de%20Lista%20de%20paradas%20LZC%20d7905c9b.xlsx?token=eyJraWQiOiJzdG9yYWdlLXVybC1zaWduaW5nLWtleV9hZGU3OGY1My02MTY0LTQwMTctODZiNC04YmZiOTdiOWZmODEiLCJhbGciOiJIUzI1NiJ9.eyJ1cmwiOiJleGNlbC1hcnF1aXZvL0NvcGlhciBkZSBMaXN0YSBkZSBwYXJhZGFzIExaQyBkNzkwNWM5Yi54bHN4IiwiaWF0IjoxNzUxMzg1ODkzLCJleHAiOjE3ODI5MjE4OTN9.GVqSO1mDGbmSP4tJvJe8N7jMnAAfagPxIHp4k63f90U"
 
     if arquivo:
         try:
@@ -271,4 +292,4 @@ with aba_pizza:
 
 st.markdown("---")
 st.caption("Desenvolvido por Luis Ignacio - 2025")
-st.caption("Versão 1.0.2")
+st.caption("Versão 1.0.4")
