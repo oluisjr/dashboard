@@ -13,8 +13,8 @@ from pyecharts.charts import Pie
 from pyecharts import options as opts
 from streamlit_echarts import st_pyecharts
 
-LOGO_PATH = r'C:\Users\csp4992\PMI\LogoCSN_Cinza.png'
-FAVICON_PATH = r'C:\Users\csp4992\PMI\favicon.png'
+LOGO_PATH = 'LogoCSN_Cinza.png'
+FAVICON_PATH = 'favicon.png'
 caminho_excel = 'https://zkzgsynxomretgrzvokk.supabase.co/storage/v1/object/sign/excel-arquivo/dados_resumidos_gerado.xlsx?token=eyJraWQiOiJzdG9yYWdlLXVybC1zaWduaW5nLWtleV9hZGU3OGY1My02MTY0LTQwMTctODZiNC04YmZiOTdiOWZmODEiLCJhbGciOiJIUzI1NiJ9.eyJ1cmwiOiJleGNlbC1hcnF1aXZvL2RhZG9zX3Jlc3VtaWRvc19nZXJhZG8ueGxzeCIsImlhdCI6MTc1MTI5NTUyMywiZXhwIjoxNzgyODMxNTIzfQ.hqSF4rmaJ8W-CWWRGhnq6aY6qV27Ruaw5e1_bqONQF8'
 
 st.set_page_config(
