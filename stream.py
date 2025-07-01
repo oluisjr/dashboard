@@ -90,8 +90,6 @@ if user_input:
     st.session_state['historico'].append(user_input)
     historico.write("\n".join(st.session_state['historico']))
 
-st.sidebar.mardown("---")
-
 anos_disponiveis = sorted(df_semanal['SEMANA'].dt.year.unique())
 anos_selecionados = st.sidebar.multiselect("Selecione o(s) ano(s):", anos_disponiveis, default=[max(anos_disponiveis)])
 
@@ -141,8 +139,6 @@ if not st.session_state['semanas_selecionadas']:
 
 semanas_selecionadas = st.session_state['semanas_selecionadas']
 df_semanal_filtrado = df_filtrado_ano[df_filtrado_ano['SEMANA_NUM'].isin(semanas_selecionadas)]
-
-st.sidebar.mardown("---")
 
 data_inicio_mes = st.sidebar.date_input("Data Inicial (Mensal)", value=pd.to_datetime(df_mensal['MES'].min()))
 data_fim_mes = st.sidebar.date_input("Data Final (Mensal)", value=pd.to_datetime(df_mensal['MES'].max()))
